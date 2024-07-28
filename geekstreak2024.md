@@ -67,3 +67,17 @@ class Solution{
     }
 }
 ```
+**Given a string str without spaces, the task is to remove all duplicate characters from it, keeping only the first occurrence.**
+**Note: The original order of characters must be kept the same.**
+```
+class Solution {
+    String removeDups(String str) {
+        String s = new String();
+        for(char c:str.toCharArray()){
+            if(s.indexOf(c)==-1)
+                s += c;
+        }
+        return s;
+    }
+}
+```
