@@ -105,3 +105,29 @@ class Solution {
     }
 }
 ```
+**Consider a rat placed at (0, 0) in a square matrix mat of order n* n. It has to reach the destination at (n - 1, n - 1). Find all possible paths that the rat can take to reach from source to destination. The directions in which the rat can move are 'U'(up), 'D'(down), 'L' (left), 'R' (right). Value 0 at a cell in the matrix represents that it is blocked and rat cannot move to it while value 1 at a cell in the matrix represents that rat can be travel through it.
+Note: In a path, no cell can be visited more than one time. If the source cell is 0, the rat cannot move to any other cell. In case of no path, return an empty list. The driver will output "-1" automatically.**
+```
+class Solution {
+    public ArrayList<String> findPath(int[][] mat) {
+        ArrayList ans = new ArrayList<>();
+        int v[][]=new int[mat.length][mat.length];
+        findPath(mat,v,0,0,ans,"",mat.length);
+        return ans;
+    }
+    public void findPath(int mat[][],int v[][],int i,int j,ArrayList<String> ans ,String s,int n){
+        if(i<0 ||i>=n||j<0||j>=n || v[i][j]==1 || mat[i][j]==0)
+            return;
+        if(i==n-1 && j==n-1){
+            ans.add(s);
+            return;
+        }
+        v[i][j]=1;
+        findPath(mat,v,i+1,j,ans,s+"D",n);
+        findPath(mat,v,i-1,j,ans,s+"U",n);
+        findPath(mat,v,i,j+1,ans,s+"R",n);
+        findPath(mat,v,i,j-1,ans,s+"L",n);
+        v[i][j]=0;
+    }
+}
+```
