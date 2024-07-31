@@ -131,3 +131,21 @@ class Solution {
     }
 }
 ```
+**Given an array of strings arr. Return the longest common prefix among all strings present in the array. If there's no prefix common in all the strings, return "-1".**
+```
+class Solution {
+    public String longestCommonPrefix(String arr[]) {
+        if(arr == null || arr.length == 0)
+            return "-1";
+        String ans = arr[0];
+        for(int i = 1; i < arr.length; i++){
+            while(arr[i].indexOf(ans) != 0){
+                ans = ans.substring(0, ans.length() - 1);
+                if(ans.isEmpty())
+                    return "-1";
+            }
+        }
+        return ans;
+    }
+}
+```
