@@ -149,3 +149,29 @@ class Solution {
     }
 }
 ```
+**You are given a rectangular matrix, and your task is to return an array while traversing the matrix in spiral form.**
+```
+class Solution {
+    public ArrayList<Integer> spirallyTraverse(int matrix[][]) {
+        ArrayList<Integer> ans = new ArrayList<>();
+        int n = matrix.length;
+        int m = matrix[0].length;
+        int row = 0, col = -1;
+        int dir = 1;
+        while(n>0 && m>0){
+            for(int i=0;i<m;i++){
+                col += dir;
+                ans.add(matrix[row][col]);
+            }
+            n--;
+            for(int i=0;i<n;i++){
+                row += dir;
+                ans.add(matrix[row][col]);
+            }
+            m--;
+            dir *= -1;
+        }
+        return ans;
+    }
+}
+```
