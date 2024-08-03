@@ -205,3 +205,32 @@ class Solution {
     }
 }
 ```
+**A celebrity is a person who is known to all but does not know anyone at a party. A party is being organized by some people.  A square matrix mat is used to represent people at the party such that if an element of row i and column j is set to 1 it means ith person knows jth person. You need to return the index of the celebrity in the party, if the celebrity does not exist, return -1.**
+```
+class Solution {
+    public int celebrity(int mat[][]) {
+       List<Integer> celb = new ArrayList<>();
+        for(int i = 0; i < mat.length; i++) {
+            boolean isCeleb = true;
+            for(int j = 0; j < mat[i].length; j++) {
+                if(i != j && mat[i][j] == 1)
+                    isCeleb = false;
+            }
+            if(isCeleb)
+                celb.add(i);
+        }
+        for(int i = 0; i < mat[0].length; i++) {
+            boolean isCeleb = true;
+            for(int j = 0; j < mat.length; j++) {
+                if(i != j && mat[j][i] == 0)
+                    isCeleb = false;
+            }
+            if(!isCeleb)
+                celb.remove((Integer) i);
+        }
+        if(celb.isEmpty())
+            return -1;
+        return celb.get(0);
+    }
+}
+```
