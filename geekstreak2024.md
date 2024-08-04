@@ -234,3 +234,35 @@ class Solution {
     }
 }
 ```
+**You are given timings of n meetings in the form of (start[i], end[i]) where start[i] is the start time of meeting i and end[i] is the finish time of meeting i. Return the maximum number of meetings that can be accommodated in a single meeting room, when only one meeting can be held in the meeting room at a particular time.**
+
+**Note: The start time of one chosen meeting can't be equal to the end time of the other chosen meeting.**
+```
+class Solution {
+    public int maxMeetings(int n, int start[], int end[]) {
+        ArrayList<int[]> l = new ArrayList<>();
+        for(int i=0;i<n;i++){
+            l.add(new int[]{start[i],end[i]});
+        }
+        Collections.sort(l, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] a, int[] b) {
+                int compareEnd = Integer.compare(a[1], b[1]);
+                if (compareEnd != 0) {
+                    return compareEnd;
+                }
+                return Integer.compare(b[0], a[0]);
+            }
+        });
+        int count = 0;
+        for(int i=0;i<n;){
+            int limit = l.get(i)[1];
+            count++;
+            while(i<n&&l.get(i)[0]<=limit){
+                i++;
+            }   
+        }
+        return count;
+    }
+}
+```
