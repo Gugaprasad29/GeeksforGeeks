@@ -266,3 +266,32 @@ class Solution {
     }
 }
 ```
+**Given a binary tree, return an array where elements represent the bottom view of the binary tree from left to right.**
+
+**Note: If there are multiple bottom-most nodes for a horizontal distance from the root, then the latter one in the level traversal is considered.**
+```
+class Solution{
+    int maxLeft=0;
+    int maxRight=0;
+    public ArrayList <Integer> bottomView(Node root){
+        ArrayList<Integer> bv = new ArrayList<>();
+        if(root == null)
+            return bv;
+        HashMap<Integer,int[]> map = new HashMap<>();
+        solve(root, 0, 0, map);
+        while(maxLeft<=maxRight)
+            bv.add(map.get(maxLeft++)[1]);
+        return bv;
+    }
+    void solve(Node root, int n, int m, HashMap<Integer,int[]> map){
+        if(root==null)
+            return;
+        maxLeft=Math.min(maxLeft, n);
+        maxRight=Math.max(maxRight, n);
+        if(map.get(n)==null || map.get(n)[0]<=m)
+        map.put(n, new int[]{m, root.data});
+        solve(root.left,n-1, m+1, map);
+        solve(root.right,n+1, m+1, map);
+    }
+}
+```
