@@ -319,3 +319,20 @@ class Solution {
     }
 }
 ```
+**Given two sorted arrays arr1 and arr2 and an element k. The task is to find the element that would be at the kth position of the combined sorted array.**
+```
+class Solution {
+    public long kthElement(int k, int arr1[], int arr2[]) {
+        int a = arr1.length;
+        int b = arr2.length;
+        int[] arr = new int[a+b];
+        for(int i=0;i<a;i++)
+            arr[i] = arr1[i];
+        for(int i=0;i<b;i++)
+            arr[a + i] = arr2[i];
+        Arrays.sort(arr);
+        long ans = arr[k-1];
+        return ans;
+    }
+}
+```
