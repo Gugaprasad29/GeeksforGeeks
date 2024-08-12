@@ -53,3 +53,27 @@ class Solution{
     }
 }
 ```
+**Given 2 sorted integer arrays arr1 and arr2 of the same size. Find the sum of the middle elements of two sorted arrays arr1 and arr2.**
+```
+class Solution {
+    public int SumofMiddleElements(int[] arr1, int[] arr2) {
+        int n = arr1.length+arr2.length;
+        int mid = n/2;
+        int i = 0, j = 0;
+        int mid1 = 0, mid2 = 0;
+        while(i+j<=mid){
+            if(arr1[i]<arr2[j]){
+                mid2 = mid1;
+                mid1 = arr1[i];
+                i++;
+            }
+            else{
+                mid2 = mid1;
+                mid1 = arr2[j];
+                j++;
+            }
+        }
+        return mid1+mid2;
+    }
+}
+```
