@@ -107,3 +107,20 @@ class Solution {
     }
 }
 ```
+**You are given a linked list where each element in the list is a node and have an integer data. You need to add 1 to the number formed by concatinating all the list node numbers together and return the head of the modified linked list.**
+
+**Note: The head represents the first element of the given array.**
+```
+class Solution {
+    public Node addOne(Node head) {
+        if(head.next==null){
+            head.data += 1;
+            return head;
+        }
+        Node res = addOne(head.next);
+        head.data += res.data/10;
+        res.data = res.data%10;
+        return head;
+    }
+}
+```
