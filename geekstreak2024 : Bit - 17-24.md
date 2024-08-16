@@ -124,3 +124,22 @@ class Solution {
     }
 }
 ```
+**Given an integer n denoting the Length of a line segment. You need to cut the line segment in such a way that the cut length of a line segment each time is either x , y or z. Here x, y, and z are integers.
+After performing all the cut operations, your total number of cut segments must be maximum. Return the maximum number of cut segments possible.**
+
+**Note: if no segment can be cut then return 0.**
+```
+class Solution{
+    public int maximizeCuts(int n, int x, int y, int z){
+        int[] dp = new int[n+1];
+        List<Integer> l = new ArrayList<>(Arrays.asList(x, y, z));
+        for(Integer num:l){
+            for(int i=num;i<=n;i++){
+                if(i-num==0 || dp[i-num]>0)
+                    dp[i] = Math.max(dp[i], 1+dp[i-num]);
+            }
+        }
+        return dp[n];
+    }
+}
+```
