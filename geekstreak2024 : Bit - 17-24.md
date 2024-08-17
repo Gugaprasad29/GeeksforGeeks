@@ -143,3 +143,21 @@ class Solution{
     }
 }
 ```
+**Given an array nums[], construct a Product Array nums[] such that nums[i] is equal to the product of all the elements of nums except nums[i].**
+```
+class Solution {
+    public static long[] productExceptSelf(int nums[]) {
+        long[] P = new long[nums.length];
+        for(int i=0;i<nums.length;i++){
+            long p =1;
+            for(int j=0;j<nums.length;j++){
+                if(j==i)
+                    continue;
+                p *= nums[j];
+            }
+            P[i] = p;
+        }
+        return P;
+    }
+}
+```
