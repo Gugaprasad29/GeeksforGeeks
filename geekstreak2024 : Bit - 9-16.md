@@ -154,8 +154,8 @@ class Solution {
         for(int i=0;i<b;i++)
             arr[a + i] = arr2[i];
         Arrays.sort(arr);
-        long ans = arr[k-1];
-        return ans;
+        long res = arr[k-1];
+        return res;
     }
 }
 ```
