@@ -16,3 +16,17 @@ class Solution {
     }
 }
 ```
+**Given an array arr[] and an integer k where k is smaller than the size of the array, the task is to find the kth smallest element in the given array. It is given that all array elements are distinct.**
+```
+class Solution {
+    public static int kthSmallest(int[] arr, int k) {
+        PriorityQueue<Integer>pq = new PriorityQueue<>(Collections.reverseOrder());
+        for(int i=0;i<arr.length;i++){
+            pq.add(arr[i]);
+            if(pq.size()>k)
+                pq.poll();
+        }
+        return pq.poll();
+    }
+}
+```
