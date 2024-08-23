@@ -103,3 +103,27 @@ class Solution {
     }
 }
 ```
+**Given a Binary Tree, return Left view of it. Left view of a Binary Tree is set of nodes visible when tree is visited from Left side. The task is to complete the function leftView(), which accepts root of the tree as argument. If no left view is possible, return an empty tree.**
+```
+class Tree{
+    ArrayList<Integer> leftView(Node root){
+        ArrayList<Integer> res = new ArrayList<>();
+        Queue<Node> q = new LinkedList<>();
+        if(root==null)
+            return res;
+        q.add(root);
+        while(!q.isEmpty()){
+            res.add(q.peek().data);
+            int n = q.size();
+            for(int i=0;i<n;i++){
+                Node temp = q.poll();
+                if(temp.left!=null)
+                    q.add(temp.left);
+                if(temp.right!=null)
+                    q.add(temp.right);
+            }
+        }
+        return res;
+    }
+}
+```
