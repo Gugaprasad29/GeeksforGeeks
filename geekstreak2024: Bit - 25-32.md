@@ -127,3 +127,25 @@ class Tree{
     }
 }
 ```
+**You are given weights and values of items, and put these items in a knapsack of capacity W to get the maximum total value in the knapsack. Note that we have only one quantity of each item.
+In other words, given two integer arrays val and wt which represent values and weights associated with items respectively. Also given an integer W which represents knapsack capacity, find out the maximum sum values subset of val[] such that the sum of the weights of the corresponding subset is smaller than or equal to W. You cannot break an item, either pick the complete item or don't pick it (0-1 property).**
+```
+class Solution {
+    static int knapSack(int W, int wt[], int val[]) {
+        int i, j;
+        int n = wt.length;
+        int K[][] = new int[n+1][W+1];
+        for(i=0;i<=n;i++){
+            for(j=0;j<=W;j++){
+                if(i==0 || j==0)
+                    K[i][j] = 0;
+                else if(wt[i-1]<=j)
+                    K[i][j] = Math.max(val[i-1]+K[i-1][j-wt[i-1]], K[i-1][j]);
+                else
+                    K[i][j] = K[i-1][j];
+           }
+       }
+       return K[n][W];
+    }
+}
+```
