@@ -149,3 +149,42 @@ class Solution {
     }
 }
 ```
+**Given two positive integer arrays arr and brr, find the number of pairs such that xy > yx (raised to power of) where x is an element from arr and y is an element from brr.**
+```
+class Solution {
+    public long countPairs(int x[], int y[], int M, int N) {
+        Arrays.sort(y);
+        int[] z = new int[5];
+        for(int i:y){
+            if(i<=4)
+                z[i]++;
+        }
+        long pairs = 0;
+        for(int i:x){
+            long temp = count(i, y, N, z);
+            pairs += temp;
+        }
+        return pairs;
+    }
+    long count(int x, int[] a, int n, int[] z){
+        if(x==0)
+            return 0;
+        if(x==1)
+            return z[0];
+        int l = 0, j = n;
+        while(l<j){
+            int mid = l+(j-l)/2;
+            if(a[mid]<=x)
+                l = mid+1;
+            else
+                j = mid;
+        }
+        long p = n-l;
+        if(x==2)
+            return p+z[0]+z[1]-z[3]-z[4]; 
+        if(x==3)
+            return p+z[0]+z[1]+z[2];
+        return p+z[0]+z[1];
+    } 
+}
+```
